@@ -1,0 +1,4 @@
+alert("new order item created");
+$("#quantity").val('');
+$("li").remove("#cart-item");
+$("#cart").append('<%= j render("update_cart_item_count") %>')

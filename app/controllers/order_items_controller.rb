@@ -11,7 +11,7 @@ class OrderItemsController < ApplicationController
         format.js
       end
     else
-      flash[:notice] = "Else, didnt save"
+      flash[:notice] = "Didnt save"
     end
 
   end
@@ -21,15 +21,21 @@ class OrderItemsController < ApplicationController
     @item = @order.order_items.find(params[:id])
     @item.update_attributes(item_params)
     @order.save
-
   end
 
   def destroy
     @order = current_order
     @item = @order.order_items.find(params[:id])
     @item.destroy
-    @order.save
-    redirect_to cart_path
+    if @order.save
+      flash[:notice] = "OrderItem successfully added!"
+      respond_to do |format|
+        format.html { redirect_to redirect_to products_path }
+        format.js
+      end
+    else
+      flash[:notice] = "Didnt save"
+    end
   end
 
   private

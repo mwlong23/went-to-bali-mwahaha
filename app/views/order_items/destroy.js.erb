@@ -1,4 +1,6 @@
-alert("delete with ajax");
+
 $("#shopping-cart-item-<%=@item.id%>").remove()
 $("li").remove("#cart-item");
-$("#cart").append('<%= j render("update_cart_item_count") %>')
+$(".cart").append('<%= j render("update_cart_item_count") %>')
+$("p").remove("#order-total");
+$(".total").append('<%= j render("update_cart_total") %>')

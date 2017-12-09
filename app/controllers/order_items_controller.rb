@@ -5,7 +5,6 @@ class OrderItemsController < ApplicationController
     @item = @order.order_items.new(item_params)
     if @order.save
       session[:order_id] = @order.id
-      flash[:notice] = "OrderItem successfully added!"
       respond_to do |format|
         format.html { redirect_to redirect_to products_path }
         format.js
@@ -28,7 +27,6 @@ class OrderItemsController < ApplicationController
     @item = @order.order_items.find(params[:id])
     @item.destroy
     if @order.save
-      flash[:notice] = "OrderItem successfully added!"
       respond_to do |format|
         format.html { redirect_to redirect_to products_path }
         format.js

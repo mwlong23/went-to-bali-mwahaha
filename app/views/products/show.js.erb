@@ -1,8 +1,17 @@
 if ($("#product-details-<%=@product.id%> .details-<%=@product.id%>").length < 1){
-    $("#product-details-<%=@product.id%>").append('<%= j      render("show_product_details")%>')
+    $("#product-details-<%=@product.id%>").append('<%= j render("show_product_details")%>')
 }
+
 else {
-  $("button#toggle-details-<%=@product.id%>").click(function(){
-      $('#product-details-<%=@product.id%>').toggle("fast")
-  })
+  if ($('#product-details-<%=@product.id%>').is(':visible')){
+    $("button#toggle-details-<%=@product.id%>").click(function(){
+        $('#product-details-<%=@product.id%>').hide()
+    })
+  }
+  else {
+    $("button#toggle-details-<%=@product.id%>").click(function(){
+        $('#product-details-<%=@product.id%>').show()
+    })
+  }
+
 }

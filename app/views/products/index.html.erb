@@ -1,23 +1,24 @@
 <h3>Products</h3>
 
-
-
 <div class="row">
   <div class="section">
     <% @products.each do |product| %>
       <div class="col s4 ">
-        <div class="product" id="product_<%product.id%>">
+        <div class="product" id="product-<%=product.id%>">
           <h4><%= product.name %></h4>
           <p><%= product.description %></p>
           <p><%= number_to_currency product.price %></p>
-          <div class="toggle-details">
-            <p id="see-details-<%product.id%>"><%= link_to "See Details", product_path(product.id), remote: true %></p>
+          <div id="">
+            <div id="see-details-<%=product.id%>"><%= link_to product_path(product.id), remote: true do%>
+             <button id="toggle-details-<%=product.id%>" class="btn btn-default ">Details</button>
+             <% end %>
+          </div>
+            <div id="product-details-<%=product.id%>">
 
+            </div>
           </div>
 
-          <div class="product-details-<%product.id%>">
 
-          </div>
           <%= form_for @order_item, remote: true do |f| %>
             <%= f.hidden_field :product_id, value: product.id %>
             <%= f.number_field :quantity, class: 'quantity', placeholder: "Oops, breaks if you don't add input!" %>

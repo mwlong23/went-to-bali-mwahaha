@@ -1,1 +1,8 @@
-$(".product-details-<%@product.id%>").append('<%= j render("show_product_details") %>')
+if ($("#product-details-<%=@product.id%> .details-<%=@product.id%>").length < 1){
+    $("#product-details-<%=@product.id%>").append('<%= j      render("show_product_details")%>')
+}
+else {
+  $("button#toggle-details-<%=@product.id%>").click(function(){
+      $('#product-details-<%=@product.id%>').toggle("fast")
+  })
+}

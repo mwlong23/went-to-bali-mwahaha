@@ -12,6 +12,10 @@
             <div id="see-details-<%=product.id%>"><%= link_to product_path(product.id), remote: true do%>
              <button id="toggle-details-<%=product.id%>" class="btn btn-default ">Details</button>
              <% end %>
+             <% if current_user && current_user.admin %>
+             <%= link_to "Edit Product", edit_product_path(product)%>
+             <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+             <% end %>
           </div>
             <div id="product-details-<%=product.id%>">
 

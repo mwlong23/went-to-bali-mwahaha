@@ -1,5 +1,5 @@
 if ($("#product-details-<%=@product.id%> .details-<%=@product.id%>").length < 1){
-    $("#product-details-<%=@product.id%>").append('<%= j render("show_product_details")%>')
+    $("#product-details-<%=@product.id%>").append('<%= j render("show_product_details")%>').show()
 }
 
 else {

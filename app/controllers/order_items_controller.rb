@@ -9,6 +9,7 @@ class OrderItemsController < ApplicationController
         format.html { redirect_to redirect_to products_path }
         format.js
       end
+      
     else
       flash[:notice] = "Didnt save"
     end

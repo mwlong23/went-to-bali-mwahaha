@@ -9,17 +9,21 @@
   </head>
   <nav>
     <div class="nav-wrapper">
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <div class="cart">
+      <ul id="nav-mobile" class="right hide-on-med-and-down cart">
+
+          <% if current_user && current_user.admin %>
+            <li><%= link_to "Add Product", new_product_path %></li>
+          <% end %>
+
           <li id="cart-item"><%= link_to "Cart | Total items: #{ cart_items }", cart_path %></li>
-        </div>
+
 
         <li><%= link_to "See all products", products_path %></li>
         <% if current_user %>
           <li><%= current_user.email %></li>
           <li><%= link_to "Sign out", '/sign_out' %></li>
         <% else %>
-          <li><%= link_to "Sign up", 'sign_up' %></li>
+          <li><%= link_to "Sign up", '/sign_up' %></li>
           <li><%= link_to "Sign in", '/sign_in' %></li>
         <% end %>
       </ul>
@@ -27,10 +31,10 @@
   </nav>
 
   <body>
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
-    <% end %>
     <div class="container">
+      <% flash.each do |name, msg| %>
+        <center><h3><%= content_tag :div, msg, id: "flash_#{name}" %></h3></center>
+      <% end %>
       <%= yield %>
     </div>
   </body>
